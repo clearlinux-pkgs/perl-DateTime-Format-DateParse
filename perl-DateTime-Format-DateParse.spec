@@ -4,13 +4,13 @@
 #
 Name     : perl-DateTime-Format-DateParse
 Version  : 0.05
-Release  : 1
+Release  : 2
 URL      : https://cpan.metacpan.org/authors/id/J/JH/JHOBLITT/DateTime-Format-DateParse-0.05.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/J/JH/JHOBLITT/DateTime-Format-DateParse-0.05.tar.gz
 Summary  : 'Parses Date::Parse compatible formats'
 Group    : Development/Tools
 License  : Artistic-1.0-Perl GPL-2.0
-Requires: perl-DateTime-Format-DateParse-license
+Requires: perl-DateTime-Format-DateParse-license = %{version}-%{release}
 BuildRequires : buildreq-cpan
 BuildRequires : perl(B::Hooks::EndOfScope)
 BuildRequires : perl(Class::Data::Inheritable)
@@ -43,7 +43,7 @@ use DateTime::Format::DateParse;
 %package dev
 Summary: dev components for the perl-DateTime-Format-DateParse package.
 Group: Development
-Provides: perl-DateTime-Format-DateParse-devel
+Provides: perl-DateTime-Format-DateParse-devel = %{version}-%{release}
 
 %description dev
 dev components for the perl-DateTime-Format-DateParse package.
@@ -82,12 +82,12 @@ make TEST_VERBOSE=1 test
 
 %install
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/perl-DateTime-Format-DateParse
-cp LICENSE %{buildroot}/usr/share/doc/perl-DateTime-Format-DateParse/LICENSE
+mkdir -p %{buildroot}/usr/share/package-licenses/perl-DateTime-Format-DateParse
+cp LICENSE %{buildroot}/usr/share/package-licenses/perl-DateTime-Format-DateParse/LICENSE
 if test -f Makefile.PL; then
-make pure_install PERL_INSTALL_ROOT=%{buildroot}
+make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
-./Build install --installdirs=site --destdir=%{buildroot}
+./Build install --installdirs=vendor --destdir=%{buildroot}
 fi
 find %{buildroot} -type f -name .packlist -exec rm -f {} ';'
 find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null ';'
@@ -96,13 +96,13 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/DateTime/Format/DateParse.pm
-/usr/lib/perl5/site_perl/5.26.1/DateTime/Format/DateParse.pod
+/usr/lib/perl5/vendor_perl/5.26.1/DateTime/Format/DateParse.pm
+/usr/lib/perl5/vendor_perl/5.26.1/DateTime/Format/DateParse.pod
 
 %files dev
 %defattr(-,root,root,-)
 /usr/share/man/man3/DateTime::Format::DateParse.3
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/perl-DateTime-Format-DateParse/LICENSE
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/perl-DateTime-Format-DateParse/LICENSE
