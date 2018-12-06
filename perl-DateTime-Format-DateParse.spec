@@ -4,7 +4,7 @@
 #
 Name     : perl-DateTime-Format-DateParse
 Version  : 0.05
-Release  : 10
+Release  : 11
 URL      : https://cpan.metacpan.org/authors/id/J/JH/JHOBLITT/DateTime-Format-DateParse-0.05.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/J/JH/JHOBLITT/DateTime-Format-DateParse-0.05.tar.gz
 Summary  : 'Parses Date::Parse compatible formats'
